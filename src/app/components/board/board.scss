@@ -1,0 +1,10 @@
+.board-wrap {
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.board {
+  display: inline-flex;
+  gap: 16px;
+  align-items: flex-start;
+}
