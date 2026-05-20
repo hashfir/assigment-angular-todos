@@ -5,7 +5,7 @@ import { Priority, Task } from '../models/task.model';
 const STORAGE_KEY = 'taskboard-v1';
 
 function uid(): string {
-  return Math.random().toString(36).slice(2, 9) + Date.now().toString(36);
+  return crypto.randomUUID();
 }
 
 const INITIAL_BOARD: Column[] = [
@@ -89,7 +89,9 @@ export class BoardService {
   private load(): Column[] {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      return raw ? (JSON.parse(raw) as Column[]) : INITIAL_BOARD;
+      if (!raw) return INITIAL_BOARD;
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? (parsed as Column[]) : INITIAL_BOARD;
     } catch {
       return INITIAL_BOARD;
     }

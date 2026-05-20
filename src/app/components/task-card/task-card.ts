@@ -20,6 +20,7 @@ export class TaskCardComponent {
   private readonly boardService = inject(BoardService);
 
   isEditing = signal(false);
+  editTitleTouched = signal(false);
   editTitle = '';
   editDescription = '';
   editPriority: Priority = 'medium';
@@ -42,7 +43,10 @@ export class TaskCardComponent {
   }
 
   saveEdit(): void {
-    if (!this.editTitle.trim()) return;
+    if (!this.editTitle.trim()) {
+      this.editTitleTouched.set(true);
+      return;
+    }
     this.boardService.updateTask(this.column().id, this.task().id, {
       title: this.editTitle.trim(),
       description: this.editDescription.trim(),
@@ -52,6 +56,7 @@ export class TaskCardComponent {
   }
 
   cancelEdit(): void {
+    this.editTitleTouched.set(false);
     this.isEditing.set(false);
   }
 
