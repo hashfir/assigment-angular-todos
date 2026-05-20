@@ -37,6 +37,7 @@
         [class.input-error]="titleTouched() && !newTitle.trim()"
         type="text"
         placeholder="What needs to be done?"
+        maxlength="200"
         [(ngModel)]="newTitle"
         (ngModelChange)="titleTouched.set(false)"
         (keydown.enter)="addTask()"
@@ -49,6 +50,7 @@
       <textarea
         class="form-textarea"
         placeholder="Add a description... (optional)"
+        maxlength="1000"
         [(ngModel)]="newDescription"
         rows="2"
       ></textarea>
