@@ -10,9 +10,17 @@
   </div>
 
   <!-- Task List -->
-  <div class="task-list">
+  <div
+    class="task-list"
+    cdkDropList
+    [id]="column().id"
+    [cdkDropListData]="column().tasks"
+    (cdkDropListDropped)="onDrop($event)"
+  >
     @for (task of column().tasks; track task.id) {
       <app-task-card
+        cdkDrag
+        [cdkDragData]="task"
         [task]="task"
         [column]="column()"
         [prevColumnId]="prevColumnId()"

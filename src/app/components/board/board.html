@@ -1,5 +1,5 @@
 <div class="board-wrap">
-  <div class="board">
+  <div class="board" cdkDropListGroup>
     @for (column of columns(); track column.id; let i = $index) {
       <app-column
         [column]="column"

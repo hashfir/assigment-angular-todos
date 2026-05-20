@@ -1,14 +1,15 @@
 import { Component, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CdkDropList, CdkDrag, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Column } from '../../models/column.model';
-import { Priority } from '../../models/task.model';
+import { Priority, Task } from '../../models/task.model';
 import { BoardService } from '../../services/board.service';
 import { TaskCardComponent } from '../task-card/task-card';
 import { AutofocusDirective } from '../../directives/autofocus.directive';
 
 @Component({
   selector: 'app-column',
-  imports: [FormsModule, TaskCardComponent, AutofocusDirective],
+  imports: [FormsModule, TaskCardComponent, AutofocusDirective, CdkDropList, CdkDrag],
   templateUrl: './column.html',
   styleUrl: './column.scss',
 })
@@ -41,6 +42,15 @@ export class ColumnComponent {
 
   cancelAdd(): void {
     this.resetForm();
+  }
+
+  onDrop(event: CdkDragDrop<Task[]>): void {
+    this.boardService.dropTask(
+      event.previousContainer.id,
+      event.container.id,
+      event.previousIndex,
+      event.currentIndex
+    );
   }
 
   private resetForm(): void {

@@ -14,3 +14,27 @@ body {
 button, input, textarea, select {
   font-family: inherit;
 }
+
+/* CDK drag-and-drop styles */
+.cdk-drag-preview {
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  opacity: 0.95;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 200ms ease;
+}
+
+.cdk-drop-list-dragging .cdk-drag:not(.cdk-drag-placeholder) {
+  transition: transform 200ms ease;
+}
+
+.cdk-drop-list-receiving {
+  background: rgba(74, 144, 217, 0.06);
+  border-radius: 6px;
+}
