@@ -92,6 +92,15 @@
     color: #333;
     background: #fff;
     outline: none;
+
+    &.input-error { border-color: #e53935; }
+  }
+
+  .field-error {
+    display: block;
+    font-size: 11px;
+    color: #e53935;
+    margin-top: -2px;
   }
 
   .edit-textarea { resize: none; }

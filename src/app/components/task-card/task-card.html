@@ -41,17 +41,24 @@
     <div class="card-edit">
       <input
         class="edit-input"
+        [class.input-error]="editTitleTouched() && !editTitle.trim()"
         type="text"
         [(ngModel)]="editTitle"
         placeholder="Task title..."
+        maxlength="200"
+        (ngModelChange)="editTitleTouched.set(false)"
         (keydown.enter)="saveEdit()"
         (keydown.escape)="cancelEdit()"
         appAutofocus
       />
+      @if (editTitleTouched() && !editTitle.trim()) {
+        <span class="field-error">Task name is required.</span>
+      }
       <textarea
         class="edit-textarea"
         [(ngModel)]="editDescription"
         rows="2"
+        maxlength="1000"
         placeholder="Description (optional)"
       ></textarea>
       <select class="edit-select" [(ngModel)]="editPriority">
