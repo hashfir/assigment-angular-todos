@@ -84,7 +84,16 @@
     margin-bottom: 6px;
 
     &:focus { border-color: #4a90d9; }
+    &.input-error { border-color: #e53935; }
     &::placeholder { color: #aaa; }
+  }
+
+  .field-error {
+    display: block;
+    font-size: 11px;
+    color: #e53935;
+    margin-top: -4px;
+    margin-bottom: 4px;
   }
 
   .form-textarea { resize: none; }

@@ -34,13 +34,18 @@
     <div class="add-form">
       <input
         class="form-input"
+        [class.input-error]="titleTouched() && !newTitle.trim()"
         type="text"
         placeholder="What needs to be done?"
         [(ngModel)]="newTitle"
+        (ngModelChange)="titleTouched.set(false)"
         (keydown.enter)="addTask()"
         (keydown.escape)="cancelAdd()"
         appAutofocus
       />
+      @if (titleTouched() && !newTitle.trim()) {
+        <span class="field-error">Task name is required.</span>
+      }
       <textarea
         class="form-textarea"
         placeholder="Add a description... (optional)"

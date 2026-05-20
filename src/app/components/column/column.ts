@@ -20,12 +20,16 @@ export class ColumnComponent {
   private readonly boardService = inject(BoardService);
 
   showAddForm = signal(false);
+  titleTouched = signal(false);
   newTitle = '';
   newDescription = '';
   newPriority: Priority = 'medium';
 
   addTask(): void {
-    if (!this.newTitle.trim()) return;
+    if (!this.newTitle.trim()) {
+      this.titleTouched.set(true);
+      return;
+    }
     this.boardService.addTask(
       this.column().id,
       this.newTitle,
@@ -43,6 +47,7 @@ export class ColumnComponent {
     this.newTitle = '';
     this.newDescription = '';
     this.newPriority = 'medium';
+    this.titleTouched.set(false);
     this.showAddForm.set(false);
   }
 }
